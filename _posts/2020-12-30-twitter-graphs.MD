@@ -6,6 +6,7 @@ header:
   image: "/images/perceptron/percept.jpg"
 excerpt: "What does this bit do again?"
 mathjax: "true"
+draft: "true"
 ---
 
 # Article Title
