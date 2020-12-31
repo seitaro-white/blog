@@ -105,7 +105,7 @@ create_nx_network(example_network_data)
 
 Of course, we also need to be able to visualise this graph. NetworkX has some basic functionality for drawing graphs with matplotlib, but for proper visualisation the best option is to export our graph into a readable file format and use a proper graph visualisation tool. I opted to use [Gephi] (https://gephi.org/), which allows us to customise how our network looks and also clustering/community-detection functionality (which we'll get into later!). Putting all of this together, lets started small by looking at my public twitter account - I don't use it much and only follow accounts people I already know in person, so it only follows a paltry *???*. Here it is visualised in Gephi. 
 
-![seitaro network no communities](link)
+<img src="{{ site.url }}{{ site.baseurl }}/images/twitter_graphs/seitaro_unweighted.png" alt="JoeSeitaro Undirected & Unweighted Network">
 
 The layout of the graph is determined with a [force-directed algorithm](Force-directed) (I've used *MultiGravity Force Atlas 2* implemented in Gephi), which assigns attractive, spring-like forces between two nodes with an edge and repulsive forces between all nodes in order to draw the graph in 2-dimensional space. As the central 'ego-node' with an edge to every other node my user account occupies the centre, and we can see right away without having to use any community-detection algorithms that the force-directed algorithm appears to naturally organise the nodes into three clusters. This based on the relative abundance of edges between nodes *within* a cluster that attracts the nodes together, and relative dearth of edges between nodes *across* different clusters that repels the clusters from each other (this is the basic principle of most community-detection algorithms, although purely for identifying groups rather than determining graph layout).
 
@@ -141,7 +141,14 @@ So, we have our two basic principles:
 - *In a follower/followee relationship, the significance of the relationship is inversely correlated with the total number of friends the follower account has.*
 
 Lets take these and combine them into an equation that we can use for calculating our edge-weights. Here's what I came up with.
-[FIGURE_OUT_MATH_SYNTAX]
+
+$$ w = \frac{1}{f(a)}  \times \frac{1}{f(b)} $$
+Where:
+- $a$ represents the friend count for User A
+- $b$ represents the follower count for User B]
+- $f()$ represents a logarithmic growth function (which I'll come back to)
+
+
 
 [BREAKDOWN_FROM_TEAMS]
 
